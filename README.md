@@ -47,7 +47,7 @@ Un esempio di come questo possa essere implementato può essere osservato sempre
 
 ## Compilazione e Installazione
 
-Normalmente, l'installazione (su Ubuntu) prevedere un semplice comando da terminale e l'installazione viene completata automaticamente. Nel nostro caso, però, si cercherà di compilare manualmente l'insieme di file per snellire il più possibile l'installazione e facilitarne il porting su un'architettura RISC-V (nonostante ROS sia progettato per architetture Intel)  
+Normalmente, l'installazione (su Ubuntu) prevedere un semplice comando da terminale e l'installazione viene completata automaticamente. Nel nostro caso, però, si cercherà di compilare manualmente l'insieme di file per snellire il più possibile l'installazione e facilitarne il porting su un'architettura RISC-V (nonostante ROS sia progettato per architetture Intel e ARM)  
 Quindi, partiremo in ispezione su ambiente virtuale che consenta (nel caso di errori irreversibili) di non danneggiare il sistema e di conseguenza che si possano provare varie combinazioni di compilazione. Questo passo è fondamentale per capire come muoverci agilmente quando poi ci sposteremo su RISC-V.
 
 ### Installazione di un ambiente virtuale
@@ -220,7 +220,7 @@ Prima di cominciare, è opportuno imparare a orientarsi con facilità all'intern
 
 ### Collegamento e Login 
 
-Per iniziare a esercitarsi sull'utilizzo di un processore di tipo RISC, è disponibile un cluster con vari nodi denominato Monte Cimone. Questa macchina è accessibile dal proprio PC (previa registrazione da form) tramite il comando di SSH:
+Per iniziare a esercitarsi sull'utilizzo di un processore di tipo RISC-V, è disponibile un cluster con vari nodi denominato Monte Cimone. Questa macchina è accessibile dal proprio PC (previa registrazione da form) tramite il comando di SSH:
 
 ```sh
 ssh username@beta.dei.unibo.it -p 2223
@@ -236,7 +236,7 @@ Dopo aver inserito la password fornita dal docente, cambierà il proprio usernam
 </div>
 <p>&nbsp;</p>
 
-NOTA IMPORTANTE: Il login è basato su architettura Intel (e quindi CISC). Sarà quindi opportuno proseguire collegandosi a un nodo per raggiungere effettivamente l'architettura RISC-V.
+NOTA IMPORTANTE: Il login non è basato su architettura RISC-V. Sarà quindi opportuno proseguire collegandosi a un nodo per raggiungere effettivamente l'architettura obiettivo.
 
 
 
@@ -336,7 +336,7 @@ Dopo un controllo generale con opzioni `--version` si noterà che tutto è stato
 
 ## Prove di compilazione di ROS su RISC-V
 
-Siamo arrivati al cuore del progetto: il porting di un sistema operativo non compatibile con RISC. Sarà necessario muoversi con cautela stando attenti alle installazioni, ai conflitti e alle dipendenze. Inoltre, bisognerà essere in grado di trovare alternative qualora non funzionasse qualche soluzione. 
+Siamo arrivati al cuore del progetto: il porting di un sistema operativo non compatibile con RISC-V. Sarà necessario muoversi con cautela stando attenti alle installazioni, ai conflitti e alle dipendenze. Inoltre, bisognerà essere in grado di trovare alternative qualora non funzionasse qualche soluzione. 
 
 Innanzitutto, per la compilazione di ROS, si utilizza normalmente `colcon` anche se non è detto che funzioni su RISC-V. Proveremo comunque a utilizzarlo installandolo con questo comando (sempre nella directory dell'utente):
 
@@ -344,7 +344,7 @@ Innanzitutto, per la compilazione di ROS, si utilizza normalmente `colcon` anche
 pip3 install --user -U colcon-common-extensions
 ```
 
-A questo punto creare la workspace come già visto virtualmente su CISC:
+A questo punto creare la workspace come già visto virtualmente su all'inizio:
 
 ```sh
 mkdir -p ~/ros2_foxy_ws/src
@@ -955,7 +955,7 @@ Si dimostra quindi come la comunicazione tra i nodi in RISC-V avviene senza prob
 
 
 ### [NOTA]: 
-Il motivo per il quale ad ogni compilazione aggiungiamo i vari percorsi è perchè non abbiamo installato ROS2 su CISC e quindi non sono disponibili classici comandi come:
+Il motivo per il quale ad ogni compilazione aggiungiamo i vari percorsi è perchè non abbiamo installato ROS2 su x86/ARM e quindi non sono disponibili classici comandi come:
 
 ```sh
 ros2 run my_package_2 my_node_2
@@ -1456,7 +1456,7 @@ Dopo aver quindi spiegato il funzionamento di ROS e dopo un'analisi del modo in 
 
 La nostra esperienza sottolinea l'importanza di una solida comprensione delle basi di ROS 2 e delle pratiche di low-level-programming per navigare con successo nel suo ecosistema, specialmente quando si affrontano sfide legate a hardware e architetture specifiche.
 
-Speriamo quindi che questo documento non solo serva come tutorial su come installare ROS su RISC-V, ma anche a come approcciarsi ad un qualsiasi porting CISC -> RISC. Di fatti qui si possono notare tutte le strategie che possono essere applicate, come l'evitare porzioni non essenziali durante l'installazione, la modifica ad hoc del compilatore, la risoluzione step-by-step per ogni dipendenza, e così via.
+Speriamo quindi che questo documento non solo serva come tutorial su come installare ROS su RISC-V, ma anche a come approcciarsi ad un qualsiasi porting su questo tipo di architettura. Di fatti qui si possono notare tutte le strategie che possono essere applicate, come l'evitare porzioni non essenziali durante l'installazione, la modifica ad hoc del compilatore, la risoluzione step-by-step per ogni dipendenza, e così via.
 
 ### Sviluppi futuri
 
